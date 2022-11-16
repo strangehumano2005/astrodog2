@@ -1,20 +1,52 @@
 function DETECTAR () {
-    if (perro.isTouching(hueso)) {
-        game.addScore(1)
-        hueso.delete()
-        basic.showLeds(`
-            . . . . .
-            # . . . .
-            . # # # #
-            . # . . #
-            . # . . #
-            `)
-    } else if (perro.isTouching(obstaculo)) {
-        game.gameOver()
-    } else if (perro.isTouching(OBS)) {
-        game.gameOver()
-    } else if (perro.isTouching(OBS3)) {
-        game.gameOver()
+    if (perro.isTouching(hueso1)) {
+        score += 1
+        hueso1.delete()
+        for (let index = 0; index < 2; index++) {
+            basic.showLeds(`
+                . . # . .
+                # # . . .
+                . # # # #
+                . # # # .
+                . # . # .
+                `)
+        }
+    } else if (perro.isTouching(hueso2)) {
+        score += 1
+        hueso2.delete()
+        for (let index = 0; index < 2; index++) {
+            basic.showLeds(`
+                . . # . .
+                # # . . .
+                . # # # #
+                . # # # .
+                . # . # .
+                `)
+        }
+    } else if (perro.isTouching(hueso3)) {
+        score += 1
+        hueso3.delete()
+        for (let index = 0; index < 2; index++) {
+            basic.showLeds(`
+                . . # . .
+                # # . . .
+                . # # # #
+                . # # # .
+                . # . # .
+                `)
+        }
+    } else if (perro.isTouching(obstaculo1)) {
+        basic.showIcon(IconNames.No)
+        basic.showNumber(score)
+        basic.showString("LOSER")
+    } else if (perro.isTouching(obstaculo2)) {
+        basic.showIcon(IconNames.No)
+        basic.showNumber(score)
+        basic.showString("LOSER")
+    } else if (perro.isTouching(obstaculo3)) {
+        basic.showIcon(IconNames.No)
+        basic.showNumber(score)
+        basic.showString("LOSER")
     } else {
     	
     }
@@ -23,7 +55,7 @@ input.onButtonPressed(Button.A, function () {
     perro.change(LedSpriteProperty.X, -1)
     DETECTAR()
 })
-input.onButtonPressed(Button.AB, function () {
+input.onPinPressed(TouchPin.P2, function () {
     perro.change(LedSpriteProperty.Y, 1)
     DETECTAR()
 })
@@ -35,25 +67,29 @@ input.onLogoEvent(TouchButtonEvent.Pressed, function () {
     perro.change(LedSpriteProperty.Y, -1)
     DETECTAR()
 })
-let OBS3: game.LedSprite = null
-let OBS: game.LedSprite = null
-let obstaculo: game.LedSprite = null
-let hueso: game.LedSprite = null
+let obstaculo3: game.LedSprite = null
+let obstaculo1: game.LedSprite = null
+let obstaculo2: game.LedSprite = null
+let hueso3: game.LedSprite = null
+let hueso2: game.LedSprite = null
+let hueso1: game.LedSprite = null
 let perro: game.LedSprite = null
+let score = 0
+score = 0
 perro = game.createSprite(0, 2)
-hueso = game.createSprite(1, 2)
-hueso.set(LedSpriteProperty.Brightness, 250)
-let H2 = game.createSprite(2, 5)
-H2.set(LedSpriteProperty.Brightness, 250)
-let H3 = game.createSprite(4, 3)
-H3.set(LedSpriteProperty.Brightness, 250)
-obstaculo = game.createSprite(4, 2)
-OBS = game.createSprite(3, 4)
-OBS3 = game.createSprite(2, 1)
-obstaculo.set(LedSpriteProperty.Brightness, 50)
-OBS.set(LedSpriteProperty.Brightness, 50)
-OBS3.set(LedSpriteProperty.Brightness, 50)
+hueso1 = game.createSprite(randint(0, 4), randint(0, 4))
+hueso1.set(LedSpriteProperty.Brightness, 128)
+hueso2 = game.createSprite(randint(0, 4), randint(0, 4))
+hueso2.set(LedSpriteProperty.Brightness, 128)
+hueso3 = game.createSprite(randint(0, 4), randint(0, 4))
+hueso3.set(LedSpriteProperty.Brightness, 128)
+obstaculo2 = game.createSprite(4, 2)
+obstaculo1 = game.createSprite(3, 4)
+obstaculo3 = game.createSprite(2, 1)
+obstaculo2.set(LedSpriteProperty.Brightness, 30)
+obstaculo1.set(LedSpriteProperty.Brightness, 30)
+obstaculo3.set(LedSpriteProperty.Brightness, 30)
 loops.everyInterval(200, function () {
-    obstaculo.change(LedSpriteProperty.X, randint(0, 4))
-    obstaculo.change(LedSpriteProperty.Y, randint(0, 4))
+    obstaculo2.change(LedSpriteProperty.X, randint(0, 4))
+    obstaculo2.change(LedSpriteProperty.Y, randint(0, 4))
 })
